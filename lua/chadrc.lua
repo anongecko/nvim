@@ -1,16 +1,26 @@
--- This file needs to have same structure as nvconfig.lua 
--- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
-
 ---@type ChadrcConfig
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+  theme = "onedark",
+}
 
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+-- Define the custom highlight group for the linter symbol
+vim.api.nvim_set_hl(0, "LinterActive", { fg = "#64bc65" }) -- Set the color to green
+
+M.ui = {
+  statusline = {
+    modules = {
+      linter = function()
+        local linters = require("lint").get_running()
+        if #linters > 0 then
+          return "%#LinterActive#󰦕%*" -- Apply the custom highlight group
+        end
+        return ""
+      end,
+    },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "linter", "lsp", "cwd", "cursor" },
+  },
 }
 
 return M
