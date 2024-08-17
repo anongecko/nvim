@@ -5,9 +5,10 @@ return {
     cmd = { "ConformInfo" },
     keys = {
       {
+        -- Customize or remove this keymap to your liking
         "<leader>f",
         function()
-          require("conform").format({ async = true })
+          require("conform").format { async = true }
         end,
         mode = "",
         desc = "Format buffer",
@@ -15,13 +16,13 @@ return {
     },
     opts = require "configs.conform",
     init = function()
+      -- Set the formatexpr option here
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
 
   {
     "neovim/nvim-lspconfig",
-    lazy = true,
     config = function()
       require "configs.lspconfig"
     end,
@@ -29,8 +30,9 @@ return {
 
   {
     "mfussenegger/nvim-lint",
+    lazy = true, -- Ensure lazy loading
     config = function()
-      require("configs.lint")
+      require "configs.lint" -- Source configuration from lint.lua
     end,
   },
 
@@ -38,7 +40,24 @@ return {
     "folke/trouble.nvim",
     cmd = "Trouble",
     config = function()
-      require("configs.trouble")
+      require "configs.trouble"
     end,
   },
+
+  {
+    "LintaoAmons/cd-project.nvim",
+    config = function()
+      require "configs.cdproject"
+    end,
+  },
+
+  -- {
+  -- 	"nvim-treesitter/nvim-treesitter",
+  -- 	opts = {
+  -- 		ensure_installed = {
+  -- 			"vim", "lua", "vimdoc",
+  --      "html", "css"
+  -- 		},
+  -- 	},
+  -- },
 }
