@@ -1,10 +1,12 @@
 require("lint").linters_by_ft = {
   markdown = { "vale" },
-  python = { "ruff", "mypy" },
+  -- python = { "ruff", "mypy" }, Covered by Ruff in lspconfig.lua
   javascript = { "oxlint" },
   typescript = { "oxlint" },
   lua = { "selene" },
   json = { "jsonlint" },
+  html = { "htmlhint" },
+  cpp = { 'cpplint', 'trivy' }
 }
 
 -- Create an autocommand group for linting

@@ -1,5 +1,4 @@
 require "nvchad.mappings"
-
 local map = vim.keymap.set
 
 -- Custom keybinding to enter command mode quickly
@@ -13,9 +12,11 @@ map("n", "<leader>tt", function()
   require("base46").toggle_transparency()
 end, { desc = "Toggle transparency" })
 
+-- Toggle NvimTree with <leader>f
+map("n", "<leader>f", ":NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+
 -- Toggle nvim-lint for all languages with <leader>tl and a custom command
 local lint_enabled = true
-
 local function toggle_linting()
   lint_enabled = not lint_enabled
   if lint_enabled then
@@ -61,3 +62,6 @@ vim.api.nvim_create_user_command("LintStatus", function()
     vim.notify "Linting is currently disabled"
   end
 end, {})
+
+-- Shorthanded command to toggle NvimTree
+vim.api.nvim_create_user_command("T", "NvimTreeToggle", { desc = "Toggle NvimTree" })

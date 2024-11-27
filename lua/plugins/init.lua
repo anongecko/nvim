@@ -36,7 +36,15 @@ return {
       require "configs.lint"
     end,
   },
-
+  {
+  "rcarriga/nvim-dap-ui",
+  dependencies = {
+    "mfussenegger/nvim-dap",
+  },
+  config = function()
+    require "configs.dap"
+  end,
+  },
   -- Trouble plugin for diagnostics
   {
     "folke/trouble.nvim",

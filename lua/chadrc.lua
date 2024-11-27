@@ -20,7 +20,7 @@ M.ui = {
 }
 
 M.base46 = {
-  theme = "ayu_dark",
+  theme = "bearded-arc",
 }
 
 vim.api.nvim_create_autocmd("VimEnter", {
